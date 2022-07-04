@@ -1,8 +1,19 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["airbnb"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
-    "react/jsx-filename-extension": [1, {"extensions":  [".js", ".jsx"]}],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-trailing-spaces": "warn",
+    "semi": "warn",
+    "object-curly-spacing": "warn",
+    "eol-last": "error",
+    "no-multiple-empty-lines": "error"
   }
 }
