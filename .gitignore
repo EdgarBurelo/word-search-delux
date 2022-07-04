@@ -1,0 +1,4 @@
+./vcs.*
+./modules.*
+.idea
+./node_modules
