@@ -1,0 +1,28 @@
+@use 'src/Components/Styles/grid' as *;
+@use 'src/Components/Styles/colors' as *;
+
+.grid {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  & > div {
+    margin: $unit 0;
+    display: flex;
+
+    & > span {
+      flex-grow: 1;
+      padding: $unit;
+      max-width: $unit * 7;
+      background: $white;
+      color: $black;
+      border: 1px solid red;
+    }
+  }
+}
+
+.selected {
+  border: 1px solid $blue_dark_01 !important;
+  background: $dark-grey !important;
+  color: $bright-grey !important;
+}
