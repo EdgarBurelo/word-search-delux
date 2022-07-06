@@ -12,7 +12,7 @@ const Game: React.FC = () => {
     return (
         <Page>
             <Text text={`Selected Word: ${state.word.toLocaleUpperCase()}`} />
-
+            <Text text={`The target language is ${state.targetLanguage.toLocaleUpperCase() === 'ES' ? 'Spanish' : 'unknown'}`} />
             <Grid
                 grid={state.grid}
                 selectedLetters={state.selectedLetters}
@@ -23,14 +23,21 @@ const Game: React.FC = () => {
             />
             {state.wordCorrectlySelected && (
                 <React.Fragment>
-                    <Text text='You found the word' />
+                    <Text
+                        text={!state.areAllWordsAnswered ?
+                            'You found the word' :
+                            'You answered all the words 🎉'
+                        }
+                    />
+                    {!state.areAllWordsAnswered &&
                     <button
+                        role='button'
                         onClick={onNextButtonClick}
                         disabled={state.areAllWordsAnswered}
                         style={{color: "black", padding: `5px 10px`, margin: `10px`}}
                     >
                         Next Word
-                    </button>
+                    </button>}
                 </React.Fragment>
             )}
         </Page>

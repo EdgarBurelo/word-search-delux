@@ -10,6 +10,7 @@ type WordsState = {
     totalWords: number
     initialWordIndex: number
     areAllWordsAnswered: boolean
+    targetLanguage: string
 }
 
 type WordAction = {
@@ -37,6 +38,7 @@ const useWordsReducer = (Words: Word[]): WordsReducer => {
         totalWords: Words.length,
         initialWordIndex,
         areAllWordsAnswered: false,
+        targetLanguage: Words[initialWordIndex].targetLanguage
     };
 
     const wordsReducer = (state: WordsState, action: WordAction) => {
