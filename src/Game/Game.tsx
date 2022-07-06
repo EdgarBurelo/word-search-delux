@@ -7,7 +7,7 @@ import Grid from "../Components/Grid/Grid";
 
 const Game: React.FC = () => {
     const Words = useGetData();
-    const {onMouseDownHandler, onMouseEnterHandler, onMouseUpHandler, state} = useWordsReducer(Words);
+    const {onMouseDownHandler, onMouseEnterHandler, onMouseUpHandler, onNextButtonClick, state} = useWordsReducer(Words);
 
     return (
         <Page>
@@ -21,7 +21,17 @@ const Game: React.FC = () => {
                 onMouseDownHandler={onMouseDownHandler}
                 onMouseEnterHandler={onMouseEnterHandler}
             />
-            {state.wordCorrectlySelected && <Text text='Won' />}
+            {state.wordCorrectlySelected && (
+                <div>
+                    <Text text='Won' />
+                    <button
+                        onClick={onNextButtonClick}
+                        style={{color: "black", padding: `0 10px`}}
+                    >
+                        Next Word
+                    </button>
+                </div>
+            )}
         </Page>
     );
 };

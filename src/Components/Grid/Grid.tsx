@@ -19,13 +19,15 @@ const Grid: React.FC<GridProps> = ({
     onMouseEnterHandler,
     onMouseUpHandler
 }) => {
+    const isGridDisabled = disabled ? 'disabled' : 'enabled';
     return (
         <div className="grid">
             {
                 grid.map((row, rowNumber) => (
                     <div
-                        onMouseUp={!disabled&& onMouseUpHandler}
                         key={rowNumber + 1}
+                        className={`row ${isGridDisabled}`}
+                        onMouseUp={onMouseUpHandler}
                     >
                         {row.map((letter , columnNumber) => {
                             const isSelected = selectedLetters.find((selectedLetter) => {
@@ -35,9 +37,9 @@ const Grid: React.FC<GridProps> = ({
                             return (
                                 <span
                                     id={`${columnNumber},${rowNumber}`}
-                                    className={isSelected && 'selected'}
-                                    onMouseDown={!disabled && onMouseDownHandler}
-                                    onMouseEnter={!disabled && onMouseEnterHandler}
+                                    className={`letter ${isSelected ? 'selected': 'unselected'} ${isGridDisabled}`}
+                                    onMouseDown={onMouseDownHandler}
+                                    onMouseEnter={onMouseEnterHandler}
                                     key={columnNumber + 1}
                                 >
                                         {letter}

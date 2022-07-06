@@ -7,6 +7,9 @@ type WordsState = {
     selectedLetters: string[][]
     grid: string[][],
     locations: string[][]
+    totalWords: number
+    initialWordIndex: number
+    areAllWordsAnswered: boolean
 }
 
 type WordAction = {
@@ -19,15 +22,21 @@ type WordsReducer = {
     onMouseDownHandler: React.MouseEventHandler
     onMouseEnterHandler: React.MouseEventHandler
     onMouseUpHandler: React.MouseEventHandler
+    onNextButtonClick: React.MouseEventHandler
 }
 
 const useWordsReducer = (Words: Word[]): WordsReducer => {
+    const initialWordIndex = 0;
+
     const initialWords: WordsState = {
         wordCorrectlySelected: false,
-        word: Words[0].word,
+        word: Words[initialWordIndex].word,
         selectedLetters: [],
-        grid: Words[0].characterGrid,
-        locations: Words[0].wordLocations.locations
+        grid: Words[initialWordIndex].characterGrid,
+        locations: Words[initialWordIndex].wordLocations.locations,
+        totalWords: Words.length,
+        initialWordIndex,
+        areAllWordsAnswered: false,
     };
 
     const wordsReducer = (state: WordsState, action: WordAction) => {
@@ -61,6 +70,27 @@ const useWordsReducer = (Words: Word[]): WordsReducer => {
                     ...state,
                     selectedLetters: [],
                 };
+            case 'NEXT_WORD':
+                if (state.wordCorrectlySelected && state.totalWords > state.initialWordIndex + 1) {
+                    const nextWordIndex = state.initialWordIndex + 1;
+
+                    return {
+                        ...state,
+                        initialWordIndex: nextWordIndex,
+                        word: Words[nextWordIndex].word,
+                        grid: Words[nextWordIndex].characterGrid,
+                        locations: Words[nextWordIndex].wordLocations.locations,
+                        wordCorrectlySelected: false,
+                        selectedLetters: [],
+                    };
+                }
+                if (state.totalWords === state.initialWordIndex + 1) {
+                    return {
+                        ...state,
+                        areAllWordsAnswered: true,
+                    };
+                }
+                return {...state,};
             default:
                 return {...state};
         }
@@ -68,7 +98,7 @@ const useWordsReducer = (Words: Word[]): WordsReducer => {
 
     const [state, dispatch] = useReducer(wordsReducer, initialWords);
 
-    const onMouseDownHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const onMouseDownHandler = (e: React.MouseEvent<HTMLElement>): void => {
         const wordLocation = e.currentTarget.id;
         const letter = wordLocation.split(',');
 
@@ -80,14 +110,13 @@ const useWordsReducer = (Words: Word[]): WordsReducer => {
         dispatch(action);
     };
 
-    const onMouseUpHandler = () => {
+    const onMouseUpHandler = (): void => {
         dispatch({
             type: 'VALIDATE_SELECTION'
         });
-
     };
 
-    const onMouseEnterHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const onMouseEnterHandler = (e: React.MouseEvent<HTMLElement>): void => {
         const wordLocation = e.currentTarget.id;
         const letter = wordLocation.split(',');
 
@@ -101,11 +130,18 @@ const useWordsReducer = (Words: Word[]): WordsReducer => {
         }
     };
 
+    const onNextButtonClick = (): void => {
+        dispatch({
+            type: 'NEXT_WORD'
+        });
+    };
+
     return {
         state,
         onMouseDownHandler,
         onMouseEnterHandler,
-        onMouseUpHandler
+        onMouseUpHandler,
+        onNextButtonClick,
     };
 };
 
