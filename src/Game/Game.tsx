@@ -22,16 +22,16 @@ const Game: React.FC = () => {
                 onMouseEnterHandler={onMouseEnterHandler}
             />
             {state.wordCorrectlySelected && (
-                <div>
+                <React.Fragment>
                     <Text text='You found the word' />
                     <button
                         onClick={onNextButtonClick}
                         disabled={state.areAllWordsAnswered}
-                        style={{color: "black", padding: `0 10px`}}
+                        style={{color: "black", padding: `5px 10px`, margin: `10px`}}
                     >
                         Next Word
                     </button>
-                </div>
+                </React.Fragment>
             )}
         </Page>
     );

@@ -7,13 +7,11 @@
   -ms-user-select: none;
   user-select: none;
   padding: $unit 0;
-  margin: $unit * 1 auto;
-
 }
 
 .grid {
   display: inline-block;
-  background: $gray_light;
+  background: $white;
   padding: $unit;
 }
 
@@ -25,7 +23,7 @@
 
 .letter {
   flex-grow: 1;
-  margin: 0 $unit;
+  margin: 0 $unit * 0.5;
   padding: $unit;
   min-width: $unit * 4;
   min-height: $unit * 4;
