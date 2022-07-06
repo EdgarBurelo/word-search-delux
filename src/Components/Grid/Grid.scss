@@ -1,43 +1,45 @@
 @use 'src/Components/Styles/grid' as *;
 @use 'src/Components/Styles/colors' as *;
 
-.grid {
+.gridContainer {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  //& > div {
-  //
-  //
-  //  & > span {
-  //    flex-grow: 1;
-  //    padding: $unit;
-  //    max-width: $unit * 7;
-  //    background: $white;
-  //    color: $black;
-  //    border: 1px solid red;
-  //  }
-  //}
+  padding: $unit 0;
+  margin: $unit * 1 auto;
+
+}
+
+.grid {
+  display: inline-block;
+  background: $gray_light;
+  padding: $unit;
 }
 
 .row {
   margin: $unit 0;
   display: flex;
+  width: fit-content;
 }
 
 .letter {
   flex-grow: 1;
+  margin: 0 $unit;
   padding: $unit;
-  max-width: $unit * 7;
+  min-width: $unit * 4;
+  min-height: $unit * 4;
   background: $white;
   color: $black;
-  border: 1px solid red;
+  border: 1px solid $blue;
+  text-align: center;
+  border-radius: $unit * 0.5;
 }
 
 .selected {
-  border: 1px solid $blue_dark_01 !important;
-  background: $dark-grey !important;
-  color: $bright-grey !important;
+  border: 1px dotted $blue_dark_01;
+  background: $dark-grey;
+  color: $bright-grey;
 }
 
 .disabled {

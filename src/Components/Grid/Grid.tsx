@@ -21,7 +21,8 @@ const Grid: React.FC<GridProps> = ({
 }) => {
     const isGridDisabled = disabled ? 'disabled' : 'enabled';
     return (
-        <div className="grid">
+        <div className="gridContainer">
+            <div className='grid'>
             {
                 grid.map((row, rowNumber) => (
                     <div
@@ -50,6 +51,7 @@ const Grid: React.FC<GridProps> = ({
                     </div>
                 ))
             }
+            </div>
         </div>
     );
 };

@@ -11,7 +11,7 @@ const Game: React.FC = () => {
 
     return (
         <Page>
-            <Text text={state.word} />
+            <Text text={`Selected Word: ${state.word.toLocaleUpperCase()}`} />
 
             <Grid
                 grid={state.grid}
@@ -23,9 +23,10 @@ const Game: React.FC = () => {
             />
             {state.wordCorrectlySelected && (
                 <div>
-                    <Text text='Won' />
+                    <Text text='You found the word' />
                     <button
                         onClick={onNextButtonClick}
+                        disabled={state.areAllWordsAnswered}
                         style={{color: "black", padding: `0 10px`}}
                     >
                         Next Word
