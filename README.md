@@ -10,7 +10,7 @@ formatted for development with eslint.
 
 The application can be run by installing the dependencies by in the root folder
 and run `npm install` (ideally with  node v18.3.0 && npm v8.12.1) and the run
-`npm run dev`.
+`npm run dev`, the application should run on localhost port 9009.
 
 ### General Improvements
 #### Infrastructure 
