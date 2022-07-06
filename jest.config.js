@@ -17,4 +17,7 @@ module.exports = {
         "<rootDir>/__test__/config.ts"
     ],
     "verbose": true,
+    "moduleNameMapper": {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    }
 };

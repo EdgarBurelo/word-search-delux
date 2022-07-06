@@ -1,8 +1,7 @@
 import React from "react";
 import './Grid.scss';
 
-
-type GridProps = {
+export type GridProps = {
     grid: string[][],
     selectedLetters: string[][]
     disabled: boolean
@@ -27,6 +26,7 @@ const Grid: React.FC<GridProps> = ({
                 grid.map((row, rowNumber) => (
                     <div
                         key={rowNumber + 1}
+                        role="row"
                         className={`row ${isGridDisabled}`}
                         onMouseUp={onMouseUpHandler}
                     >
